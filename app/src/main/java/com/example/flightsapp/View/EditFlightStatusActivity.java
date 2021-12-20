@@ -68,9 +68,13 @@ public class EditFlightStatusActivity extends AppCompatActivity {
     }
 
     public void onClickSave() { // Сохранение заметки
-        flightStatus.setName_status(editName.getText().toString());
-        flightStatus.setArgument_status(editSpecifications.getText().toString());
-        editFlightStatusViewModel.setFlightStatusToDb(flightStatus.getId_flight_status(), flightStatus.getName_status(), flightStatus.getArgument_status(), statusId != -1);
+        if (!TextUtils.isEmpty(editName.getText().toString().trim()) && !TextUtils.isEmpty(editSpecifications.getText().toString().trim())) {
+            flightStatus.setName_status(editName.getText().toString());
+            flightStatus.setArgument_status(editSpecifications.getText().toString());
+            editFlightStatusViewModel.setFlightStatusToDb(flightStatus.getId_flight_status(), flightStatus.getName_status(), flightStatus.getArgument_status(), statusId != -1);
+        } else {
+            Toast.makeText(getApplicationContext(), "Необходимые поля не заполнены", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void getIntentMain() {

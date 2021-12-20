@@ -18,6 +18,7 @@ import com.example.flightsapp.Data.Mssql.Route;
 import com.example.flightsapp.R;
 import com.example.flightsapp.View.AdminPanelActivity;
 import com.example.flightsapp.View.EditFlightStatusActivity;
+import com.example.flightsapp.View.EditRouteActivity;
 import com.example.flightsapp.View.FlightDetailsActivity;
 
 import java.util.ArrayList;
@@ -116,7 +117,9 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
                 i.putExtra("statusId", flightStatus.getId_flight_status());
                 context.startActivity(i);
             } else if (status.equals("routes")){
-                //todo routes edit
+                Intent i = new Intent(context, EditRouteActivity.class);
+                i.putExtra("routeId", route.getId_route());
+                context.startActivity(i);
             } else if (status.equals("tables")){
                 if (localTable.equals("Flights")){
                     Intent i = new Intent(context, AdminPanelActivity.class);

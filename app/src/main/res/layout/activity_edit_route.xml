@@ -10,7 +10,7 @@
     android:background="@color/dark_lighter"
     tools:context="com.example.flightsapp.View.EditFlightStatusActivity">
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/editRouteId"
         android:layout_width="385dp"
         android:layout_height="44dp"
@@ -18,8 +18,8 @@
         android:background="@android:drawable/editbox_background"
         android:ems="10"
         android:hint="id маршрута (до 4 цифр)"
+        android:inputType="number"
         android:maxLength="4"
-        android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,6 @@
         android:gravity="top"
         android:maxLength="199"
         android:hint="Аэропорт отправки"
-        android:inputType="textMultiLine|textPersonName"
         android:padding="10dp"
         android:textColorHint="?android:attr/textColorHint"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +54,6 @@
         android:gravity="top"
         android:maxLength="199"
         android:hint="Аэропорт прибытия"
-        android:inputType="textMultiLine|textPersonName"
         android:padding="10dp"
         android:textColorHint="?android:attr/textColorHint"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +72,6 @@
         android:gravity="top"
         android:maxLength="199"
         android:hint="Аэропорт пересадки"
-        android:inputType="textMultiLine|textPersonName"
         android:padding="10dp"
         android:textColorHint="?android:attr/textColorHint"
         app:layout_constraintEnd_toEndOf="parent"

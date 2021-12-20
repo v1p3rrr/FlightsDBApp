@@ -31,7 +31,7 @@ public class ConnectionHelper {
             password = "12345";
         } else {
             //todo
-            username = "sa";
+            username = "flights_user";
             password = "12345";
         }
         database = "flightsdb";

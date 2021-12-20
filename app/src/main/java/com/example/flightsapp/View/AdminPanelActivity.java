@@ -169,11 +169,15 @@ public class AdminPanelActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {if (item.getItemId() == R.id.addNote) {
-        if (status.equals("flight_statuses")){
-            Intent i = new Intent(AdminPanelActivity.this, EditFlightStatusActivity.class);
-            startActivity(i);
-        }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.addNote) {
+            if (status.equals("flight_statuses")){
+                Intent i = new Intent(AdminPanelActivity.this, EditFlightStatusActivity.class);
+                startActivity(i);
+            } else if (status.equals("routes")){
+                Intent i = new Intent(AdminPanelActivity.this, EditRouteActivity.class);
+                startActivity(i);
+            }
     } else if (item.getItemId() == R.id.logout) {
         //onLogout(); // обработка нажатия кнопки выхода из аккаунта
         startActivity(new Intent(AdminPanelActivity.this, AuthActivity.class));

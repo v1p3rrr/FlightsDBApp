@@ -58,7 +58,7 @@ public class EditFlightStatusViewModel extends AndroidViewModel {
             if (connection != null) {
                 String query = "";
                 if (edit) {
-                    query = "update flight_statuses set name_status = '" + name_status + "', argument_status = '" + (argument_status != null ? argument_status + "'" : "null") + " where id_flight_status = " + statusId;
+                    query = "update flight_statuses set name_status = '" + name_status + "', argument_status = " + (argument_status != null ? "'" + argument_status + "'" : "null") + " where id_flight_status = " + statusId;
                 } else {
                     query = "insert into flight_statuses (name_status, argument_status) values ('" + name_status + (argument_status != null ? "', '" + argument_status + "')" : ", null)");
                 }Statement st = connection.createStatement();
