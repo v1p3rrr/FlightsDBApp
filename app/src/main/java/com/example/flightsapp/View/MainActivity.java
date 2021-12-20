@@ -16,9 +16,15 @@ import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.Spinner;
 
 import com.example.flightsapp.Data.Mssql.Flight;
 import com.example.flightsapp.Data.Mssql.FlightDetails;
+import com.example.flightsapp.Data.Mssql.Route;
 import com.example.flightsapp.Data.Room.Note;
 import com.example.flightsapp.R;
 import com.example.flightsapp.View.Adapters.MainAdapter;
@@ -30,6 +36,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
     private MainAdapter mainAdapter;
     private RecyclerView rcView;
+    private Spinner spinner;
     private MainViewModel mainViewModel;
     private String airport_query;
 
@@ -53,15 +60,8 @@ public class MainActivity extends AppCompatActivity {
     private void init() { // Инициализация необходимых элементов активити и прочего
         airport_query="Russia, Moscow, VKO ";
         try {
-            rcView = findViewById(R.id.rcView);
-
-            List<FlightDetails> flights = mainViewModel.getFlightsFromDb(airport_query);
-            if (flights != null){
-                rcView.setAdapter(mainAdapter);
-//                   mainViewModel.setDisplayList(noteList);
-                mainAdapter.updateAdapter(flights);
-            }
-            rcView.setLayoutManager(new LinearLayoutManager(this));
+            setRcView(airport_query);
+            setSpinner();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -71,6 +71,44 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, AuthActivity.class));
             finish();
         }
+    }
+
+    private void setRcView(String airport){
+        rcView = findViewById(R.id.rcView);
+        List<FlightDetails> flights = mainViewModel.getFlightsFromDb(airport);
+        if (flights != null){
+            rcView.setAdapter(mainAdapter);
+//                   mainViewModel.setDisplayList(noteList);
+            mainAdapter.updateAdapter(flights);
+        }
+        rcView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setSpinner(){
+        List<String> routes = mainViewModel.getRouteFromDb();
+        String[] airports = new String[routes.size()];
+        for (int i = 0; i < routes.size(); i++){
+            airports[i]=routes.get(i);
+        }
+        spinner = findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.airport_spinner_layout, airports);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                // Получаем выбранный объект
+                String item = (String)parent.getItemAtPosition(position);
+                setRcView(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        };
+        spinner.setOnItemSelectedListener(itemSelectedListener);
     }
 
 

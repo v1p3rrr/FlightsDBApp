@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.flightsapp.Data.Mssql.Flight;
 import com.example.flightsapp.Data.Mssql.FlightDetails;
+import com.example.flightsapp.Data.Mssql.Route;
 import com.example.flightsapp.Data.Room.Note;
 import com.example.flightsapp.Repository.Firebase.FirebaseAuthRepository;
 import com.example.flightsapp.Repository.Mssql.ConnectionHelper;
@@ -41,7 +42,6 @@ public class MainViewModel extends AndroidViewModel {
                 ResultSet rs = st.executeQuery(query);
                 while (rs.next()) {
                     FlightDetails item = new FlightDetails();
-                    System.out.println(rs.getString("id_airline_pfk"));
                     //TODO обработка если в результате выполнения вернется null
                     item.setId_airline_pfk(rs.getString("id_airline_pfk"));
                     item.setId_route_pfk(rs.getInt("id_route_pfk"));
@@ -64,6 +64,27 @@ public class MainViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         return flights;
+    }
+
+    public List<String> getRouteFromDb(){
+        List<String> routes = new ArrayList<>();
+        try {
+            connection = connectionHelper.connection();
+            if (connection != null) {
+                String query = "(SELECT airport_departure as airport FROM routes) UNION (SELECT airport_destination as airport FROM routes)";
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
+                    //TODO обработка если в результате выполнения вернется null
+                    routes.add(rs.getString("airport"));
+                }
+            } else {
+                connectionResult = "Check your connection";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return routes;
     }
 
 //    public void logout(){
