@@ -62,6 +62,18 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
     public String getTable(int position){
         return tableArray.get(position);
     }
+    public Flight getFlight(int position){
+        return flightArray.get(position);
+    }
+    public FlightStatus getFlightStatus(int position){
+        return flightStatusArray.get(position);
+    }
+    public Route getRoute(int position){
+        return routeArray.get(position);
+    }
+    public Airline getAirline(int position){
+        return airlineArray.get(position);
+    }
 
     // Класс, отвечающий за отдельный элемент
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -99,7 +111,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
                 //todo flights edit
             } else if (status.equals("airlines")){
                 //todo airlines edit
-            } else if (status.equals("flight statuses")){
+            } else if (status.equals("flight_statuses")){
                 Intent i = new Intent(context, EditFlightStatusActivity.class);
                 i.putExtra("statusId", flightStatus.getId_flight_status());
                 context.startActivity(i);
@@ -120,7 +132,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
                     context.startActivity(i);
                 } else if (localTable.equals("Flight Statuses")){
                     Intent i = new Intent(context, AdminPanelActivity.class);
-                    i.putExtra("status", "flight statuses");
+                    i.putExtra("status", "flight_statuses");
                     context.startActivity(i);
                 }
             }
@@ -139,6 +151,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         clear();
         tableArray = newList;
         status = "tables";
+        notifyDataSetChanged();
     }
 
     public void updateFlightAdapter(List<Flight> newList) { // Обновление списка
@@ -148,6 +161,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         }
         flightArray = newList;
         status = "flights";
+        notifyDataSetChanged();
     }
 
     public void updateAirlineAdapter(List<Airline> newList) { // Обновление списка
@@ -157,6 +171,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         }
         airlineArray = newList;
         status = "airlines";
+        notifyDataSetChanged();
     }
 
     public void updateFlightStatusAdapter(List<FlightStatus> newList) { // Обновление списка
@@ -165,7 +180,8 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
             tableArray.add(""+newList.get(i).getName_status());
         }
         flightStatusArray = newList;
-        status = "flight statuses";
+        status = "flight_statuses";
+        notifyDataSetChanged();
     }
 
     public void updateRoutesAdapter(List<Route> newList) { // Обновление списка
@@ -175,6 +191,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         }
         routeArray = newList;
         status = "routes";
+        notifyDataSetChanged();
     }
 
 }

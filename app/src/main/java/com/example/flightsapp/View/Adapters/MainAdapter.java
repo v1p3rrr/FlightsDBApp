@@ -80,6 +80,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     public void updateAdapter(List<FlightDetails> newList) { // Обновление списка
         mainArray = newList;
-        //notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 }

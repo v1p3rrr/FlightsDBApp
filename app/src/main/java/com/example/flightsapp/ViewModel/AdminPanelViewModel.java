@@ -142,4 +142,56 @@ public class AdminPanelViewModel extends AndroidViewModel {
         }
         return flightStatus;
     }
+
+    public void deleteFromDb(String table, String idName, int id){
+        try {
+            connection = connectionHelper.connection(true);
+            if (connection != null) {
+                String query = "delete from "+ table +" where " + idName + " = " + id;
+                System.out.println(query);
+                Statement st = connection.createStatement();
+                System.out.println(query);
+                st.execute(query);
+            } else {
+                connectionResult = "Check your connection";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteFromDb(String table, String idName, String id){
+        try {
+            connection = connectionHelper.connection(true);
+            if (connection != null) {
+                String query = "delete from "+ table +" where " + idName + " = '" + id + "'";
+                System.out.println(query);
+                Statement st = connection.createStatement();
+                System.out.println(query);
+                st.execute(query);
+            } else {
+                connectionResult = "Check your connection";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteFromDb(String table, String idName1, String idName2, String id1, int id2){
+        try {
+            connection = connectionHelper.connection(true);
+            if (connection != null) {
+                String query = "delete from "+ table +" where " + idName1 + " = '" + id1 + "' and " + idName2 + " = " + id2;
+                System.out.println(query);
+                Statement st = connection.createStatement();
+                System.out.println(query);
+                st.execute(query);
+            } else {
+                connectionResult = "Check your connection";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

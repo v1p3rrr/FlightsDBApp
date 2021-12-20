@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -91,24 +92,28 @@ public class AdminPanelActivity extends AppCompatActivity {
             if (flights != null) {
                 rcView.setAdapter(adminAdapter);
                 adminAdapter.updateFlightAdapter(flights);
+                getItemTouchHelper().attachToRecyclerView(rcView);
             }
         } else if (status.equals("airlines")) {
             List<Airline> airlines = adminPanelViewModel.getAirlineFromDb();
             if (airlines != null) {
                 rcView.setAdapter(adminAdapter);
                 adminAdapter.updateAirlineAdapter(airlines);
+                getItemTouchHelper().attachToRecyclerView(rcView);
             }
         } else if (status.equals("routes")) {
             List<Route> routes = adminPanelViewModel.getRouteFromDb();
             if (routes != null) {
                 rcView.setAdapter(adminAdapter);
                 adminAdapter.updateRoutesAdapter(routes);
+                getItemTouchHelper().attachToRecyclerView(rcView);
             }
-        } else if (status.equals("flight statuses")) {
+        } else if (status.equals("flight_statuses")) {
             List<FlightStatus> flightStatus = adminPanelViewModel.getFlightStatusFromDb();
             if (flightStatus != null) {
                 rcView.setAdapter(adminAdapter);
                 adminAdapter.updateFlightStatusAdapter(flightStatus);
+                getItemTouchHelper().attachToRecyclerView(rcView);
             }
         }
         rcView.setLayoutManager(new LinearLayoutManager(this));
@@ -121,11 +126,37 @@ public class AdminPanelActivity extends AppCompatActivity {
         }
     }
 
-//    private void onLogout() { // метод для выхода из аккаунта
-//        mainViewModel.logout();
-//        startActivity(new Intent(MainActivity.this, AuthActivity.class));
-//        finish();
-//    }
+    private ItemTouchHelper getItemTouchHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) { // Удаление по свайпу
+                switch (status) {
+                    case "flights":
+                        adminPanelViewModel.deleteFromDb("flights", "id_airline_pfk", "id_route_pfk", adminAdapter.getFlight(viewHolder.getAdapterPosition()).getId_airline_pfk(), adminAdapter.getFlight(viewHolder.getAdapterPosition()).getId_route_pfk());
+                        adminAdapter.updateFlightAdapter(adminPanelViewModel.getFlightsFromDb());
+                        break;
+                    case "airlines":
+                        adminPanelViewModel.deleteFromDb("airlines", "id_airline", adminAdapter.getAirline(viewHolder.getAdapterPosition()).getId_airline());
+                        adminAdapter.updateAirlineAdapter(adminPanelViewModel.getAirlineFromDb());
+                        break;
+                    case "routes":
+                        adminPanelViewModel.deleteFromDb("routes", "id_route", adminAdapter.getRoute(viewHolder.getAdapterPosition()).getId_route());
+                        adminAdapter.updateRoutesAdapter(adminPanelViewModel.getRouteFromDb());
+                        break;
+                    case "flight_statuses":
+                        adminPanelViewModel.deleteFromDb("flight_statuses", "id_flight_status", adminAdapter.getFlightStatus(viewHolder.getAdapterPosition()).getId_flight_status());
+                        adminAdapter.updateFlightStatusAdapter(adminPanelViewModel.getFlightStatusFromDb());
+                        break;
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
@@ -139,7 +170,7 @@ public class AdminPanelActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {if (item.getItemId() == R.id.addNote) {
-        if (status.equals("flight statuses")){
+        if (status.equals("flight_statuses")){
             Intent i = new Intent(AdminPanelActivity.this, EditFlightStatusActivity.class);
             startActivity(i);
         }
