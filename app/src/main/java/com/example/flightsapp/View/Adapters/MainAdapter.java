@@ -11,10 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.flightsapp.Data.Mssql.Flight;
 import com.example.flightsapp.Data.Mssql.FlightDetails;
 import com.example.flightsapp.R;
-import com.example.flightsapp.View.EditActivity;
 import com.example.flightsapp.View.FlightDetailsActivity;
 
 import java.util.ArrayList;

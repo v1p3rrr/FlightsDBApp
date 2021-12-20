@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_admin_panel.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_auth.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_edit.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_edit_airline.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_edit_flight.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_edit_route.xml" value="0.33" />
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_flight_details.xml" value="0.25" />
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_image.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -14,6 +18,7 @@
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/layout/note_list_layout.xml" value="0.25" />
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/menu/menu_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/menu/menu_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/vpr/StudioProjects/FlightsDBApp/app/src/main/res/menu/menu_main_user.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/vpr/StudioProjects/NotesApp/app/src/main/res/drawable-anydpi/ic_save_note.xml" value="0.3828125" />
         <entry key="..\:/Users/vpr/StudioProjects/NotesApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="..\:/Users/vpr/StudioProjects/NotesApp/app/src/main/res/drawable/gph_logo_button_rounded_shape.xml" value="0.3828125" />

@@ -107,7 +107,7 @@ public class ImageActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if (noteId != -1 && isChanged){
-            Intent i = new Intent(this, EditActivity.class);
+            Intent i = new Intent(this, EditFlightStatusActivity.class);
             i.putExtra("noteId", imageViewModel.getLastNote().getNoteId());
             startActivity(i);
             finishAffinity();

@@ -93,7 +93,7 @@ public class FlightDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.addNote) { // обработка нажатия создания новой заметки
-            //startActivity(new Intent(MainActivity.this, EditActivity.class));
+            //startActivity(new Intent(MainActivity.this, EditFlightStatusActivity.class));
             getInfo();
         }
         return true;

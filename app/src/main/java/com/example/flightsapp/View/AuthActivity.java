@@ -37,11 +37,6 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onStart() { // Переход на MainActivity, если пользователь уже вошел ранее
         super.onStart();
-        FirebaseUser currUser = authViewModel.getMAuth().getCurrentUser();
-        if (currUser != null) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
     }
 
     public void onClickSignUp(View view) { // Метод кнопки регистрации
@@ -52,35 +47,37 @@ public class AuthActivity extends AppCompatActivity {
         } else if (enterPassword.getText().toString().length() < 6) {
             Toast.makeText(getApplicationContext(), "Пароль должен иметь длину не менее 6 символов", Toast.LENGTH_SHORT).show();
         } else { // Процесс регистрации
-            authViewModel.getMAuth().createUserWithEmailAndPassword(enterLogin.getText().toString(), enterPassword
-                    .getText().toString()).addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Успешная регистрация", Toast.LENGTH_SHORT).show();
-                            // Toast.makeText(getApplicationContext(), "Письмо для подтверждения аккаунта отправлено на почту", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AuthActivity.this, MainActivity.class));
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Email введён неверно или занят", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            boolean regCheck = authViewModel.registration(enterLogin.getText().toString(), enterPassword.getText().toString());
+            if (regCheck) {
+                Toast.makeText(getApplicationContext(), "Успешная регистрация", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AuthActivity.this, MainActivity.class));
+            } else {
+                Toast.makeText(getApplicationContext(), "Ошибка регистрации", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     public void onClickSignIn(View view) { // Метод кнопки входа
         if (TextUtils.isEmpty(enterLogin.getText().toString()) || TextUtils.isEmpty(enterPassword.getText().toString())) {
             Toast.makeText(getApplicationContext(), "Ошибка - логин или пароль не введён!", Toast.LENGTH_SHORT).show();
-        } else if (enterPassword.getText().toString().length() < 6) {
+        } else if (enterPassword.getText().toString().length() < 4) {
             Toast.makeText(getApplicationContext(), "Невозможная длина пароля", Toast.LENGTH_SHORT).show();
         } else {
-            authViewModel.getMAuth().signInWithEmailAndPassword(enterLogin.getText().toString(), enterPassword.getText().toString()).addOnCompleteListener(this, task -> {
-                if (task.isSuccessful()) {
+            int authCheck = authViewModel.authorization(enterLogin.getText().toString(), enterPassword.getText().toString());
+                if (authCheck == 1) {
+                    Toast.makeText(getApplicationContext(), "Вход в панель администратора выполнен успешно", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(AuthActivity.this, AdminPanelActivity.class);
+                    startActivity(i); // Переход на экран
+                    finish();
+                } else if (authCheck == 0){
                     Toast.makeText(getApplicationContext(), "Вход выполнен успешно", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(AuthActivity.this, MainActivity.class);
+                    i.putExtra("airlineId", "tables");
                     startActivity(i); // Переход на главный экран
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Неверный логин/пароль", Toast.LENGTH_SHORT).show();
                 }
-            });
         }
     }
 }

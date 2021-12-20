@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,13 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.Spinner;
 
-import com.example.flightsapp.Data.Mssql.Flight;
 import com.example.flightsapp.Data.Mssql.FlightDetails;
-import com.example.flightsapp.Data.Mssql.Route;
-import com.example.flightsapp.Data.Room.Note;
 import com.example.flightsapp.R;
 import com.example.flightsapp.View.Adapters.MainAdapter;
 import com.example.flightsapp.ViewModel.MainViewModel;
@@ -58,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void init() { // Инициализация необходимых элементов активити и прочего
-        airport_query="Russia, Moscow, VKO ";
         try {
-            setRcView(airport_query);
             setSpinner();
         }
         catch (Exception e){
@@ -98,9 +91,8 @@ public class MainActivity extends AppCompatActivity {
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 // Получаем выбранный объект
-                String item = (String)parent.getItemAtPosition(position);
+                String item = (String) parent.getItemAtPosition(position);
                 setRcView(item);
             }
 
@@ -121,18 +113,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_user, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.addNote) { // обработка нажатия создания новой заметки
-            //startActivity(new Intent(MainActivity.this, EditActivity.class));
-            startActivity(new Intent(MainActivity.this, FlightDetailsActivity.class));
-        } else if (item.getItemId() == R.id.logout) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {if (item.getItemId() == R.id.logout) {
             //onLogout(); // обработка нажатия кнопки выхода из аккаунта
-            startActivity(new Intent(MainActivity.this, EditActivity.class));
+            startActivity(new Intent(MainActivity.this, AuthActivity.class));
+            finish();
         }
         return true;
     }

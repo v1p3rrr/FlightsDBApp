@@ -32,7 +32,7 @@ public class FlightDetailsViewModel extends AndroidViewModel {
     public FlightDetails getFlightFromDb(String id_airline_pfk, int id_route_pfk){
         FlightDetails flight = new FlightDetails();
         try {
-            connection = connectionHelper.connection();
+            connection = connectionHelper.connection(true); //todo
             if (connection != null) {
                 String query = "Select * from flights inner join routes on id_route = id_route_pfk inner join aircrafts on id_aircraft = id_aircraft_fk inner join flight_statuses on id_flight_status = id_flight_status_fk inner join airlines on id_airline = id_airline_pfk where id_airline_pfk = '"+id_airline_pfk+"' and id_route_pfk = "+id_route_pfk;
                 System.out.println(query);

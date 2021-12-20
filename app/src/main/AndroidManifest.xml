@@ -19,10 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.flightsapp.View.EditActivity" />
+        <activity android:name="com.example.flightsapp.View.EditFlightStatusActivity" />
         <activity android:name="com.example.flightsapp.View.MainActivity" />
         <activity android:name="com.example.flightsapp.View.ImageActivity" />
         <activity android:name="com.example.flightsapp.View.FlightDetailsActivity" />
+        <activity android:name="com.example.flightsapp.View.AdminPanelActivity" />
 
 
 

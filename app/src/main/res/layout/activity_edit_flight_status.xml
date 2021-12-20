@@ -8,28 +8,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_lighter"
-    tools:context="com.example.flightsapp.View.EditActivity">
+    tools:context="com.example.flightsapp.View.EditFlightStatusActivity">
 
     <AutoCompleteTextView
-        android:id="@+id/editTitle"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:id="@+id/editStatusName"
+        android:layout_width="385dp"
+        android:layout_height="44dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:background="@android:drawable/editbox_background"
         android:ems="10"
-        android:hint="@string/titleHint"
+        android:hint="Название статуса"
+        android:maxLength="50"
         android:inputType="textPersonName"
         android:padding="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/synonymCheck"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNote"
+        android:id="@+id/editSpecifications"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -38,30 +35,16 @@
         android:background="@android:drawable/editbox_background"
         android:ems="10"
         android:gravity="top"
-        android:hint="@string/contentHint"
+        android:hint="Доп. информация"
+        android:maxLength="199"
         android:inputType="textMultiLine|textPersonName"
         android:padding="10dp"
         android:textColorHint="?android:attr/textColorHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editTitle"
-        app:layout_constraintTop_toBottomOf="@+id/editTitle"
+        app:layout_constraintStart_toStartOf="@+id/editStatusName"
+        app:layout_constraintTop_toBottomOf="@+id/editStatusName"
         app:layout_constraintVertical_bias="0.0" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/synonymCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNote"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/gph_ic_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,15 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-
-import com.example.flightsapp.Data.Mssql.Flight;
 import com.example.flightsapp.Data.Mssql.FlightDetails;
-import com.example.flightsapp.Data.Mssql.Route;
-import com.example.flightsapp.Data.Room.Note;
-import com.example.flightsapp.Repository.Firebase.FirebaseAuthRepository;
 import com.example.flightsapp.Repository.Mssql.ConnectionHelper;
-import com.example.flightsapp.Repository.Room.NoteRoomRepository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -34,7 +27,7 @@ public class MainViewModel extends AndroidViewModel {
     public List<FlightDetails> getFlightsFromDb(String airport_query){
         List<FlightDetails> flights = new ArrayList<>();
         try {
-            connection = connectionHelper.connection();
+            connection = connectionHelper.connection(false);
             if (connection != null) {
                 String query = "Select * from flights inner join routes on id_route = id_route_pfk inner join flight_statuses on id_flight_status = id_flight_status_fk where airport_departure= '"+airport_query+"' or airport_destination = '"+airport_query+"'";
                 System.out.println(query);
@@ -69,7 +62,7 @@ public class MainViewModel extends AndroidViewModel {
     public List<String> getRouteFromDb(){
         List<String> routes = new ArrayList<>();
         try {
-            connection = connectionHelper.connection();
+            connection = connectionHelper.connection(true); //todo
             if (connection != null) {
                 String query = "(SELECT airport_departure as airport FROM routes) UNION (SELECT airport_destination as airport FROM routes)";
                 Statement st = connection.createStatement();

@@ -24,10 +24,16 @@ public class ConnectionHelper {
 
     String username, password, ip, port, database;
 
-    public Connection connection(){
+    public Connection connection(boolean isAdmin){
         ip = "192.168.1.71";
-        username = "sa";
-        password = "12345";
+        if (isAdmin) {
+            username = "sa";
+            password = "12345";
+        } else {
+            //todo
+            username = "sa";
+            password = "12345";
+        }
         database = "flightsdb";
         port = "1433";
 

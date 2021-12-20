@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screenEdit"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_lighter"
+    tools:context="com.example.flightsapp.View.EditFlightStatusActivity">
+
+    <AutoCompleteTextView
+        android:id="@+id/editAirlineId"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:maxLength="3"
+        android:hint="ID Авиакомпании (до 3 символов)"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/editAirlineName"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:maxLength="60"
+        android:hint="Название авиакомпании"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAirlineId" />
+
+    <AutoCompleteTextView
+        android:id="@+id/editAircraftsAmount"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:hint="Примерное кол-во самолётов"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAirlineName" />
+
+    <AutoCompleteTextView
+        android:id="@+id/editOriginCountry"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:maxLength="100"
+        android:hint="Страна регистрации"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAircraftsAmount" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
