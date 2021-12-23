@@ -118,11 +118,13 @@ public class EditFlightActivity extends AppCompatActivity {
 
         buttonPickDateDeparture = findViewById(R.id.buttonPickDateDeparture);
         String text = editFlightViewModel.getFlightFromDb(airlineId, routeId).getTime_departure();
-        Matcher matcher = patternDate.matcher(text);
-        while (matcher.find()) {
-            dateDeparture+=text.substring(matcher.start(), matcher.end());
+        if (text!=null) {
+            Matcher matcher = patternDate.matcher(text);
+            while (matcher.find()) {
+                dateDeparture += text.substring(matcher.start(), matcher.end());
+            }
+            buttonPickDateDeparture.setText(dateDeparture);
         }
-        buttonPickDateDeparture.setText(dateDeparture);
         buttonPickDateDeparture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,11 +134,13 @@ public class EditFlightActivity extends AppCompatActivity {
 
         buttonPickDateDestination = findViewById(R.id.buttonPickDateDestination);
         text = editFlightViewModel.getFlightFromDb(airlineId, routeId).getTime_arrival();
-        matcher = patternDate.matcher(text);
-        while (matcher.find()) {
-            dateDestination+=text.substring(matcher.start(), matcher.end());
+        if (text!=null) {
+            Matcher matcher = patternDate.matcher(text);
+            while (matcher.find()) {
+                dateDestination += text.substring(matcher.start(), matcher.end());
+            }
+            buttonPickDateDestination.setText(dateDestination);
         }
-        buttonPickDateDestination.setText(dateDestination);
         buttonPickDateDestination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,12 +150,14 @@ public class EditFlightActivity extends AppCompatActivity {
 
         buttonPickTimeDeparture = findViewById(R.id.buttonPickTimeDeparture);
         text = editFlightViewModel.getFlightFromDb(airlineId, routeId).getTime_departure();
-        matcher = patternTime.matcher(text);
-        while (matcher.find()) {
-            timeDeparture+=text.substring(matcher.start(), matcher.end());
+        if (text!=null) {
+            Matcher matcher = patternTime.matcher(text);
+            while (matcher.find()) {
+                timeDeparture += text.substring(matcher.start(), matcher.end());
+            }
+            buttonPickTimeDeparture.setText(timeDeparture);
+            timeDeparture += ":00";
         }
-        buttonPickTimeDeparture.setText(timeDeparture);
-        timeDeparture+=":00";
         buttonPickTimeDeparture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,12 +167,14 @@ public class EditFlightActivity extends AppCompatActivity {
 
         buttonPickTimeDestination = findViewById(R.id.buttonPickTimeDestination);
         text = editFlightViewModel.getFlightFromDb(airlineId, routeId).getTime_arrival();
-        matcher = patternTime.matcher(text);
-        while (matcher.find()) {
-            timeDestination+=text.substring(matcher.start(), matcher.end());
+        if (text!=null) {
+            Matcher matcher = patternTime.matcher(text);
+            while (matcher.find()) {
+                timeDestination += text.substring(matcher.start(), matcher.end());
+            }
+            buttonPickTimeDestination.setText(timeDestination);
+            timeDestination += ":00";
         }
-        buttonPickTimeDestination.setText(timeDestination);
-        timeDestination+=":00";
         buttonPickTimeDestination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
