@@ -1,6 +1,7 @@
 package com.example.flightsapp.Data.Mssql;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Route implements Serializable {
 
@@ -26,6 +27,19 @@ public class Route implements Serializable {
 
     public Route(){
 
+    }
+
+    @Override
+    public String toString() {
+        return ""+id_route;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Route)) return false;
+        Route route = (Route) o;
+        return getId_route() == route.getId_route() && getId_route_length() == route.getId_route_length() && getAirport_destination_length() == route.getAirport_destination_length() && getAirport_departure_length() == route.getAirport_departure_length() && getAirport_transfer_length() == route.getAirport_transfer_length() && Objects.equals(getAirport_destination(), route.getAirport_destination()) && Objects.equals(getAirport_departure(), route.getAirport_departure()) && Objects.equals(getAirport_transfer(), route.getAirport_transfer());
     }
 
     public int getId_route() {

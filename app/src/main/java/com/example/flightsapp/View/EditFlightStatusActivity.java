@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.flightsapp.Data.Mssql.FlightStatus;
+import com.example.flightsapp.Data.Mssql.Route;
 import com.example.flightsapp.Data.Room.Note;
 import com.example.flightsapp.ViewModel.EditFlightStatusViewModel;
 import com.example.flightsapp.R;
@@ -69,6 +70,7 @@ public class EditFlightStatusActivity extends AppCompatActivity {
 
     public void onClickSave() { // Сохранение заметки
         if (!TextUtils.isEmpty(editName.getText().toString().trim()) && !TextUtils.isEmpty(editSpecifications.getText().toString().trim())) {
+            if (flightStatus == null) flightStatus = new FlightStatus();
             flightStatus.setName_status(editName.getText().toString());
             flightStatus.setArgument_status(editSpecifications.getText().toString());
             editFlightStatusViewModel.setFlightStatusToDb(flightStatus.getId_flight_status(), flightStatus.getName_status(), flightStatus.getArgument_status(), statusId != -1);

@@ -14,16 +14,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AuthViewModel extends AndroidViewModel {
-//    private final FirebaseAuthRepository firebaseAuthRepository;
-//
-//    public AuthViewModel(Application app){
-//        super(app);
-//        firebaseAuthRepository = FirebaseAuthRepository.getInstance();
-//    }
-//
-//    public FirebaseAuth getMAuth(){
-//        return firebaseAuthRepository.getMAuth();
-//    }
 
     private ConnectionHelper connectionHelper;
     Connection connection;

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Flights App</string>
     <string name="titleHint">Заголовок</string>
+    <string name="terminalDeparture"><font size="12">Терминал отправления</font></string>
+    <string name="terminalDestination"><font size="12">Терминал прибытия</font></string>
     <string name="contentHint">Введите текст</string>
     <string name="loginHint">Введите почту</string>
     <string name="passwordHint">Введите пароль</string>

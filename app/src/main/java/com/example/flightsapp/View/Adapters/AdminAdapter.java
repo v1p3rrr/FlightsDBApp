@@ -17,6 +17,8 @@ import com.example.flightsapp.Data.Mssql.FlightStatus;
 import com.example.flightsapp.Data.Mssql.Route;
 import com.example.flightsapp.R;
 import com.example.flightsapp.View.AdminPanelActivity;
+import com.example.flightsapp.View.EditAirlineActivity;
+import com.example.flightsapp.View.EditFlightActivity;
 import com.example.flightsapp.View.EditFlightStatusActivity;
 import com.example.flightsapp.View.EditRouteActivity;
 import com.example.flightsapp.View.FlightDetailsActivity;
@@ -108,36 +110,60 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
 
         @Override
         public void onClick(View v) { // при нажатии на элемент передается ID заметки из бд и переходит на экран изменения
-            if (status.equals("flights")){
-                //todo flights edit
-            } else if (status.equals("airlines")){
-                //todo airlines edit
-            } else if (status.equals("flight_statuses")){
-                Intent i = new Intent(context, EditFlightStatusActivity.class);
-                i.putExtra("statusId", flightStatus.getId_flight_status());
-                context.startActivity(i);
-            } else if (status.equals("routes")){
-                Intent i = new Intent(context, EditRouteActivity.class);
-                i.putExtra("routeId", route.getId_route());
-                context.startActivity(i);
-            } else if (status.equals("tables")){
-                if (localTable.equals("Flights")){
-                    Intent i = new Intent(context, AdminPanelActivity.class);
-                    i.putExtra("status", "flights");
+            switch (status) {
+                case "flights": {
+                    Intent i = new Intent(context, EditFlightActivity.class);
+                    i.putExtra("airlineId", flight.getId_airline_pfk());
+                    i.putExtra("routeId", flight.getId_route_pfk());
                     context.startActivity(i);
-                } else if (localTable.equals("Airlines")){
-                    Intent i = new Intent(context, AdminPanelActivity.class);
-                    i.putExtra("status", "airlines");
-                    context.startActivity(i);
-                } else if (localTable.equals("Routes")) {
-                    Intent i = new Intent(context, AdminPanelActivity.class);
-                    i.putExtra("status", "routes");
-                    context.startActivity(i);
-                } else if (localTable.equals("Flight Statuses")){
-                    Intent i = new Intent(context, AdminPanelActivity.class);
-                    i.putExtra("status", "flight_statuses");
-                    context.startActivity(i);
+                    break;
                 }
+                case "airlines": {
+                    Intent i = new Intent(context, EditAirlineActivity.class);
+                    i.putExtra("airlineId", airline.getId_airline());
+                    context.startActivity(i);
+                    break;
+                }
+                case "flight_statuses": {
+                    Intent i = new Intent(context, EditFlightStatusActivity.class);
+                    i.putExtra("statusId", flightStatus.getId_flight_status());
+                    context.startActivity(i);
+                    break;
+                }
+                case "routes": {
+                    Intent i = new Intent(context, EditRouteActivity.class);
+                    i.putExtra("routeId", route.getId_route());
+                    context.startActivity(i);
+                    break;
+                }
+                case "tables":
+                    switch (localTable) {
+                        case "Flights": {
+                            Intent i = new Intent(context, AdminPanelActivity.class);
+                            i.putExtra("status", "flights");
+                            context.startActivity(i);
+                            break;
+                        }
+                        case "Airlines": {
+                            Intent i = new Intent(context, AdminPanelActivity.class);
+                            i.putExtra("status", "airlines");
+                            context.startActivity(i);
+                            break;
+                        }
+                        case "Routes": {
+                            Intent i = new Intent(context, AdminPanelActivity.class);
+                            i.putExtra("status", "routes");
+                            context.startActivity(i);
+                            break;
+                        }
+                        case "Flight Statuses": {
+                            Intent i = new Intent(context, AdminPanelActivity.class);
+                            i.putExtra("status", "flight_statuses");
+                            context.startActivity(i);
+                            break;
+                        }
+                    }
+                    break;
             }
         }
     }
@@ -154,7 +180,6 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         clear();
         tableArray = newList;
         status = "tables";
-        notifyDataSetChanged();
     }
 
     public void updateFlightAdapter(List<Flight> newList) { // Обновление списка
@@ -164,7 +189,6 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         }
         flightArray = newList;
         status = "flights";
-        notifyDataSetChanged();
     }
 
     public void updateAirlineAdapter(List<Airline> newList) { // Обновление списка
@@ -174,7 +198,6 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         }
         airlineArray = newList;
         status = "airlines";
-        notifyDataSetChanged();
     }
 
     public void updateFlightStatusAdapter(List<FlightStatus> newList) { // Обновление списка
@@ -184,7 +207,6 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         }
         flightStatusArray = newList;
         status = "flight_statuses";
-        notifyDataSetChanged();
     }
 
     public void updateRoutesAdapter(List<Route> newList) { // Обновление списка
@@ -194,7 +216,6 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
         }
         routeArray = newList;
         status = "routes";
-        notifyDataSetChanged();
     }
 
 }

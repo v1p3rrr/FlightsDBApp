@@ -103,14 +103,6 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(itemSelectedListener);
     }
 
-
-
-//    private void onLogout() { // метод для выхода из аккаунта
-//        mainViewModel.logout();
-//        startActivity(new Intent(MainActivity.this, AuthActivity.class));
-//        finish();
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_user, menu);

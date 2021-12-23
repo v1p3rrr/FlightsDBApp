@@ -1,5 +1,6 @@
 package com.example.flightsapp.View;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,6 +35,7 @@ public class EditRouteActivity extends AppCompatActivity {
         init();
     }
 
+    @SuppressLint("SetTextI18n")
     public void init() {
         editRouteId = findViewById(R.id.editRouteId);
         editAirportDeparture = findViewById(R.id.editAirportDeparture);
@@ -61,6 +63,7 @@ public class EditRouteActivity extends AppCompatActivity {
 
     public void onClickSave() { // Сохранение
         if (!TextUtils.isEmpty(editRouteId.getText().toString().trim()) && !TextUtils.isEmpty(editAirportDeparture.getText().toString().trim()) && !TextUtils.isEmpty(editAirportDestination.getText().toString().trim())) {
+            if (route == null) route = new Route();
             route.setId_route(Integer.parseInt(editRouteId.getText().toString()));
             route.setAirport_departure(editAirportDeparture.getText().toString());
             route.setAirport_destination(editAirportDestination.getText().toString());

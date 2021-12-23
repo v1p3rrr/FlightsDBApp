@@ -72,8 +72,7 @@ public class AdminPanelActivity extends AppCompatActivity {
         catch (Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();
-            Log.i(TAG, "IllegalAccessException 22222");
-            //mainViewModel.logout();
+            Log.i(TAG, "IllegalAccessException occurred");
             startActivity(new Intent(AdminPanelActivity.this, AuthActivity.class));
             finish();
         }
@@ -87,34 +86,39 @@ public class AdminPanelActivity extends AppCompatActivity {
                 rcView.setAdapter(adminAdapter);
                 adminAdapter.updateTableAdapter(tables);
             }
-        } else if (status.equals("flights")) {
-            List<Flight> flights = adminPanelViewModel.getFlightsFromDb();
-            if (flights != null) {
-                rcView.setAdapter(adminAdapter);
-                adminAdapter.updateFlightAdapter(flights);
-                getItemTouchHelper().attachToRecyclerView(rcView);
-            }
-        } else if (status.equals("airlines")) {
-            List<Airline> airlines = adminPanelViewModel.getAirlineFromDb();
-            if (airlines != null) {
-                rcView.setAdapter(adminAdapter);
-                adminAdapter.updateAirlineAdapter(airlines);
-                getItemTouchHelper().attachToRecyclerView(rcView);
-            }
-        } else if (status.equals("routes")) {
-            List<Route> routes = adminPanelViewModel.getRouteFromDb();
-            if (routes != null) {
-                rcView.setAdapter(adminAdapter);
-                adminAdapter.updateRoutesAdapter(routes);
-                getItemTouchHelper().attachToRecyclerView(rcView);
-            }
-        } else if (status.equals("flight_statuses")) {
-            List<FlightStatus> flightStatus = adminPanelViewModel.getFlightStatusFromDb();
-            if (flightStatus != null) {
-                rcView.setAdapter(adminAdapter);
-                adminAdapter.updateFlightStatusAdapter(flightStatus);
-                getItemTouchHelper().attachToRecyclerView(rcView);
-            }
+        } else switch (status) {
+            case "flights":
+                List<Flight> flights = adminPanelViewModel.getFlightsFromDb();
+                if (flights != null) {
+                    rcView.setAdapter(adminAdapter);
+                    adminAdapter.updateFlightAdapter(flights);
+                    getItemTouchHelper().attachToRecyclerView(rcView);
+                }
+                break;
+            case "airlines":
+                List<Airline> airlines = adminPanelViewModel.getAirlineFromDb();
+                if (airlines != null) {
+                    rcView.setAdapter(adminAdapter);
+                    adminAdapter.updateAirlineAdapter(airlines);
+                    getItemTouchHelper().attachToRecyclerView(rcView);
+                }
+                break;
+            case "routes":
+                List<Route> routes = adminPanelViewModel.getRouteFromDb();
+                if (routes != null) {
+                    rcView.setAdapter(adminAdapter);
+                    adminAdapter.updateRoutesAdapter(routes);
+                    getItemTouchHelper().attachToRecyclerView(rcView);
+                }
+                break;
+            case "flight_statuses":
+                List<FlightStatus> flightStatus = adminPanelViewModel.getFlightStatusFromDb();
+                if (flightStatus != null) {
+                    rcView.setAdapter(adminAdapter);
+                    adminAdapter.updateFlightStatusAdapter(flightStatus);
+                    getItemTouchHelper().attachToRecyclerView(rcView);
+                }
+                break;
         }
         rcView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -154,6 +158,7 @@ public class AdminPanelActivity extends AppCompatActivity {
                         adminAdapter.updateFlightStatusAdapter(adminPanelViewModel.getFlightStatusFromDb());
                         break;
                 }
+                adminAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
             }
         });
     }
@@ -171,15 +176,29 @@ public class AdminPanelActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.addNote) {
-            if (status.equals("flight_statuses")){
-                Intent i = new Intent(AdminPanelActivity.this, EditFlightStatusActivity.class);
-                startActivity(i);
-            } else if (status.equals("routes")){
-                Intent i = new Intent(AdminPanelActivity.this, EditRouteActivity.class);
-                startActivity(i);
+            switch (status) {
+                case "flights": {
+                    Intent i = new Intent(AdminPanelActivity.this, EditFlightActivity.class);
+                    startActivity(i);
+                    break;
+                }
+                case "flight_statuses": {
+                    Intent i = new Intent(AdminPanelActivity.this, EditFlightStatusActivity.class);
+                    startActivity(i);
+                    break;
+                }
+                case "routes": {
+                    Intent i = new Intent(AdminPanelActivity.this, EditRouteActivity.class);
+                    startActivity(i);
+                    break;
+                }
+                case "airlines": {
+                    Intent i = new Intent(AdminPanelActivity.this, EditAirlineActivity.class);
+                    startActivity(i);
+                    break;
+                }
             }
     } else if (item.getItemId() == R.id.logout) {
-        //onLogout(); // обработка нажатия кнопки выхода из аккаунта
         startActivity(new Intent(AdminPanelActivity.this, AuthActivity.class));
         finish();
     }

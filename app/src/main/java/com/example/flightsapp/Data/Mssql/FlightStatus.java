@@ -1,5 +1,7 @@
 package com.example.flightsapp.Data.Mssql;
 
+import java.util.Objects;
+
 public class FlightStatus {
     private int id_flight_status;
     private String name_status;
@@ -15,6 +17,19 @@ public class FlightStatus {
     }
 
     public FlightStatus() {
+    }
+
+    @Override
+    public String toString() {
+        return name_status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FlightStatus)) return false;
+        FlightStatus that = (FlightStatus) o;
+        return getId_flight_status() == that.getId_flight_status() && getName_status_length() == that.getName_status_length() && getArgument_status_length() == that.getArgument_status_length() && Objects.equals(getName_status(), that.getName_status()) && Objects.equals(getArgument_status(), that.getArgument_status());
     }
 
     public int getId_flight_status() {

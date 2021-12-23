@@ -24,12 +24,12 @@ public class EditAirlineViewModel extends AndroidViewModel {
         connectionHelper = ConnectionHelper.getInstance();
     }
 
-    public Airline getAirlineFromDb(int airlineId){
+    public Airline getAirlineFromDb(String airlineId){
         Airline airline = new Airline();
         try {
             connection = connectionHelper.connection(true);
             if (connection != null) {
-                String query = "Select * from airlines where id_airline = "+airlineId;
+                String query = "Select * from airlines where id_airline = '"+airlineId+"'";
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while (rs.next()) {
@@ -53,7 +53,7 @@ public class EditAirlineViewModel extends AndroidViewModel {
             if (connection != null) {
                 String query = "";
                 if (edit) {
-                    query = "update airlines set name_airline = '" + name_airline + "', origin_country = '" + origin_country + "', approx_aircrafts_amount = " + approx_aircrafts_amount + " where id_route = " + id_airline;
+                    query = "update airlines set name_airline = '" + name_airline + "', origin_country = '" + origin_country + "', approx_aircrafts_amount = " + approx_aircrafts_amount + " where id_airline = '" + id_airline+"'";
                 } else {
                     query = "insert into airlines (id_airline, name_airline, origin_country, approx_aircrafts_amount) values ('" + id_airline + "', '" + name_airline + "', '" + origin_country + "', " + approx_aircrafts_amount +")";
                 }Statement st = connection.createStatement();

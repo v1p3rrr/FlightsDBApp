@@ -1,6 +1,7 @@
 package com.example.flightsapp.ViewModel;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -63,6 +64,7 @@ public class EditRouteViewModel extends AndroidViewModel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

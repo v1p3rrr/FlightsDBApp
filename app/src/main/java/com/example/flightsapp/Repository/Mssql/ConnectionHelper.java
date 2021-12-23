@@ -30,7 +30,6 @@ public class ConnectionHelper {
             username = "sa";
             password = "12345";
         } else {
-            //todo
             username = "flights_user";
             password = "12345";
         }

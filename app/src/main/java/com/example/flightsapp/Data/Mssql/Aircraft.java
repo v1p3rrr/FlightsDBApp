@@ -1,5 +1,7 @@
 package com.example.flightsapp.Data.Mssql;
 
+import java.util.Objects;
+
 public class Aircraft {
 
     private int id_aircraft;
@@ -21,6 +23,19 @@ public class Aircraft {
     }
 
     public Aircraft() {
+    }
+
+    @Override
+    public String toString() {
+        return id_manufacturer_fk + " " + id_model_fk + "; Серийный номер:" + serial_number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Aircraft)) return false;
+        Aircraft aircraft = (Aircraft) o;
+        return getId_aircraft() == aircraft.getId_aircraft() && getSerial_number() == aircraft.getSerial_number() && getId_model_fk_length() == aircraft.getId_model_fk_length() && getId_manufacturer_fk_length() == aircraft.getId_manufacturer_fk_length() && getSpecifications_length() == aircraft.getSpecifications_length() && Objects.equals(getId_model_fk(), aircraft.getId_model_fk()) && Objects.equals(getId_manufacturer_fk(), aircraft.getId_manufacturer_fk()) && Objects.equals(getSpecifications(), aircraft.getSpecifications());
     }
 
     public int getId_aircraft() {

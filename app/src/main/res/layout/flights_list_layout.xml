@@ -9,14 +9,13 @@
     android:background="@color/dark">
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvFlight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:text="S7 6222 | 25.07 13:00 - 26.07 01:45 | USA, Los Angeles, Arrived"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

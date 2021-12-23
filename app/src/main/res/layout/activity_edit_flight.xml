@@ -2,26 +2,143 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/screenEdit"
-    android:clickable="true"
-    android:focusableInTouchMode="true"
+    android:id="@+id/screenEditFlight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_lighter"
-    tools:context="com.example.flightsapp.View.EditFlightStatusActivity">
+    android:focusableInTouchMode="true"
+    tools:context="com.example.flightsapp.View.EditFlightActivity"
+    tools:ignore="UsingOnClickInXml">
 
-    <AutoCompleteTextView
-        android:id="@+id/editTitle"
-        android:layout_width="385dp"
-        android:layout_height="44dp"
+    <Spinner
+        android:id="@+id/idAirlineSpinner"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="44dp"
+        android:background="@color/dark"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/idRouteSpinner"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="44dp"
+        android:background="@color/dark"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idAirlineSpinner" />
+
+    <Spinner
+        android:id="@+id/idAircraftSpinner"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="44dp"
+        android:background="@color/dark"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idRouteSpinner" />
+
+    <Spinner
+        android:id="@+id/idFlightStatusSpinner"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="44dp"
+        android:background="@color/dark"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idAircraftSpinner" />
+
+    <Button
+        android:id="@+id/buttonPickTimeDeparture"
+        android:layout_width="150dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:text="Выбрать время вылета"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toEndOf="@+id/buttonPickDateDeparture"
+        app:layout_constraintTop_toBottomOf="@+id/idFlightStatusSpinner" />
+
+    <EditText
+        android:id="@+id/editTerminalDestination"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="28dp"
         android:background="@android:drawable/editbox_background"
         android:ems="10"
-        android:hint="@string/titleHint"
-        android:inputType="textPersonName"
-        android:padding="10dp"
+        android:hint="@string/terminalDestination"
+        android:maxLength="3"
+        android:padding="5dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toEndOf="@+id/editTerminalDeparture"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPickTimeDestination"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonPickDateDeparture"
+        android:layout_width="150dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:text="Выбрать дату вылета"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/idFlightStatusSpinner" />
+
+    <EditText
+        android:id="@+id/editTerminalDeparture"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="28dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="@string/terminalDeparture"
+        android:maxLength="2"
+        android:padding="5dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPickDateDestination"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonPickTimeDestination"
+        android:layout_width="150dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:text="Выбрать время посадки"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toEndOf="@+id/buttonPickDateDestination"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPickTimeDeparture" />
+
+    <Button
+        android:id="@+id/buttonPickDateDestination"
+        android:layout_width="150dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:text="Выбрать дату посадки"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPickDateDeparture" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
